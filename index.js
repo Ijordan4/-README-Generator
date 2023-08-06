@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const axios = require('axios');
 
-// Function to generate the README content
+
 function generateREADME(answers, licenseBadge) {
   return `
 # ${answers.title}
@@ -41,10 +41,9 @@ For additional questions, you can reach me through [GitHub](https://github.com/$
 `;
 }
 
-// Function to get the license badge URL based on the selected license
+
 function getLicenseBadgeURL(license) {
-  // Here, you can implement a mapping of license names to badge URLs.
-  // For example, using shields.io for license badges.
+  
   switch (license) {
     case 'MIT':
       return 'https://img.shields.io/badge/License-MIT-yellow.svg';
@@ -52,13 +51,13 @@ function getLicenseBadgeURL(license) {
       return 'https://img.shields.io/badge/License-Apache%202.0-blue.svg';
     case 'GPL 3.0':
       return 'https://img.shields.io/badge/License-GPLv3-blue.svg';
-    // Add more cases for other license options as needed.
+    
     default:
       return '';
   }
 }
 
-// Prompt the user for project information
+
 inquirer
   .prompt([
     {
@@ -109,13 +108,13 @@ inquirer
     },
   ])
   .then((answers) => {
-    // Get the license badge URL based on the selected license
+    
     const licenseBadgeURL = getLicenseBadgeURL(answers.license);
 
-    // Generate the README content
+    
     const readmeContent = generateREADME(answers, licenseBadgeURL);
 
-    // Save the generated README content to README.md
+    
     fs.writeFile('README.md', readmeContent, (err) => {
       if (err) throw err;
       console.log('README.md has been generated successfully!');
